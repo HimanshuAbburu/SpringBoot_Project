@@ -1,6 +1,13 @@
 package com.embarkx.firstjobapp.job;
 
+import com.embarkx.firstjobapp.company.Company;
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name = "job_table")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -8,6 +15,19 @@ public class Job {
     private String maxSalary;
     private String location;
 
+    @ManyToOne
+    private Company company;
+
+    public Job() {
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;
